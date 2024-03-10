@@ -7,11 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="8.0.0" />
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="MongoDB.Driver" Version="2.24.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ApiModelo.Application\ApiModelo.Application.csproj" />
     <ProjectReference Include="..\ApiModelo.Domain.Core\ApiModelo.Domain.Core.csproj" />
+    <ProjectReference Include="..\ApiModelo.Domain.Services\ApiModelo.Domain.Services.csproj" />
   </ItemGroup>
 
 </Project>
