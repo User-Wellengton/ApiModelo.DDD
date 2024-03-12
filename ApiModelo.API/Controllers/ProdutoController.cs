@@ -15,6 +15,8 @@ namespace ApiModelo.API.Controllers
             this.applicationServiceProduto = applicationServiceProduto;
         }
 
+
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()

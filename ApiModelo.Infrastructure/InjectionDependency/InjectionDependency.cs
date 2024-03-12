@@ -4,38 +4,30 @@ using ApiModelo.Application.Interfaces;
 using ApiModelo.Domain.Core.Interfaces.Repositorys;
 using ApiModelo.Domain.Core.Interfaces.Services;
 using ApiModelo.Domain.Services;
+using ApiModelo.Infrastructure.Data;
 using ApiModelo.Infrastructure.Data.Repositorys;
 using Autofac;
 using AutoMapper;
 
 namespace ApiModelo.Infrastructure.InjectionDependency
 {
-    public class InjectionDependency
+    public class InjectionDependency : Module
     {
-        public static void Load(ContainerBuilder builder)
-        {
-            #region IOC
+        //protected override void Load(ContainerBuilder builder)
+        //{
+        //    builder.Services.AddScoped<IApplicationServiceProduto, ApplicationsServiceProduto>();
+        //    builder.Services.AddScoped<IServiceProduto, ServiceProduto>();
+        //    builder.Services.AddScoped<IRepositoryProduto, RepositoryProduto>();
 
-            builder.RegisterType<ApplicationsServiceCliente>().As<IApplicationServiceCliente>();
-            builder.RegisterType<ServiceCliente>().As<IServiceCliente>();
-            builder.RegisterType<RepositoryCliente>().As<IRepositoryCliente>();
+        //    builder.Services.AddScoped<IApplicationServiceCliente, ApplicationsServiceCliente>();
+        //    builder.Services.AddScoped<IServiceCliente, ServiceCliente>();
+        //    builder.Services.AddScoped<IRepositoryCliente, RepositoryCliente>();
 
-            builder.RegisterType<ApplicationsServiceProduto>().As<IApplicationServiceProduto>();            
-            builder.RegisterType<ServiceProduto>().As<IServiceProduto>();            
-            builder.RegisterType<RepositoryProduto>().As<IRepositoryProduto>();
+        //    builder.Services.AddSingleton<IDatabaseSettings, DatabaseSettings>();
+        //    builder.Services.AddSingleton<MongoContext>();
 
-            builder.Register(ctx => new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile(new ClienteMapper());
-                cfg.AddProfile(new ProdutoMapper());
-              
-
-            }));
-
-            builder.Register(ctx => ctx.Resolve<MapperConfiguration>().CreateMapper()).As<IMapper>().InstancePerLifetimeScope();
-        }
-
-        #endregion IOC
+        //    builder.Services.AddAutoMapper(typeof(ClienteMapper), typeof(ProdutoMapper));
+        //}
     }
 }
 

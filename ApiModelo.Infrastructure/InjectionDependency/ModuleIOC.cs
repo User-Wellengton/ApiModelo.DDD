@@ -6,7 +6,7 @@ namespace ApiModelo.Infrastructure.InjectionDependency
     {
         protected override void Load(ContainerBuilder builder)
         {
-            InjectionDependency.Load(builder);
+            builder.RegisterModule<InjectionDependency>();
         }
     }
 }

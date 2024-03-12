@@ -1,5 +1,4 @@
-﻿using System;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace ApiModelo.Domain.Entitys
@@ -8,7 +7,11 @@ namespace ApiModelo.Domain.Entitys
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string? Id { get; set; }
+        public string? _Id { get; set; }
+
+        [BsonElement("id")]
+        public int Id { get; set; }
+
         [BsonElement("data_cadastro")]
         public DateTime DataCadastro { get; set; }
 
@@ -17,7 +20,7 @@ namespace ApiModelo.Domain.Entitys
 
         protected EntidadeBase()
         {
-            Id = ObjectId.GenerateNewId().ToString(); 
+            _Id = ObjectId.GenerateNewId().ToString(); 
             DataCadastro = DateTime.UtcNow;
         }
 
