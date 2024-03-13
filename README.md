@@ -1,5 +1,5 @@
 API com Arquitetura DDD e MongoDB em C#
-Este é um projeto de API em C# que utiliza a arquitetura Domain-Driven Design (DDD) e o MongoDB como banco de dados. A API oferece funcionalidades CRUD para gerenciamento de Produtos e Clientes.
+Este é um projeto de API em C# que utiliza a arquitetura Domain-Driven Design (DDD) e o MongoDB como banco de dados. A API oferece funcionalidades CRUD para gerenciamento de Produtos e Clientes. 
 
 Tecnologias Utilizadas
 ASP.NET Core
