@@ -1,5 +1,4 @@
 ﻿using ApiModelo.Domain.Core.Interfaces.Repositorys;
-using ApiModelo.Domain.Entitys;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -62,12 +61,27 @@ namespace ApiModelo.Infrastructure.Data.Repositorys
         {
             try
             {
-                var filter = Builders<TEntity>.Filter.Eq("_id", id);
-                return _collection.Find(filter).FirstOrDefault();
+                var filter = Builders<TEntity>.Filter.Eq("id", id);
+
+                // Verifica se o filtro está vazio ou nulo
+                if (filter == null || filter == Builders<TEntity>.Filter.Empty)
+                {
+                    throw new ArgumentException("Não foi localizado registro com esse ID.");
+                }
+
+                // Realiza a busca usando o filtro
+                var entity = _collection.Find(filter).FirstOrDefault();
+
+                if (entity == null)
+                {
+                    throw new ArgumentException("Não foi localizado registro com esse ID.");
+                }
+
+                return entity;
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao obter entidade por ID do MongoDB.", ex);
+                throw new Exception("Não foi localizado registro com esse ID.", ex);
             }
         }
 
@@ -75,23 +89,20 @@ namespace ApiModelo.Infrastructure.Data.Repositorys
         {
             try
             {
-                var filter = Builders<TEntity>.Filter.Eq("_id", GetIdValue(entity));
+                var filter = Builders<TEntity>.Filter.Eq("Id", GetIdValue(entity));
                 _collection.DeleteOne(filter);
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao excluir entidade do MongoDB.", ex);
+                throw new Exception("Erro ao obter entidade por ID do MongoDB.", ex);
             }
         }
 
-        private ObjectId GetIdValue(TEntity entity)
+        private Int32 GetIdValue(TEntity entity)
         {
             var propertyInfo = typeof(TEntity).GetProperty("Id");
-            return (ObjectId)propertyInfo.GetValue(entity);
+            return (Int32)propertyInfo.GetValue(entity);
         }
-        private bool HasIdProperty(TEntity entity)
-        {
-            return typeof(TEntity).GetProperty("Id") != null;
-        }
+       
     }
 }

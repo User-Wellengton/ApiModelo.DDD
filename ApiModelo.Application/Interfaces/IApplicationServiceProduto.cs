@@ -6,7 +6,7 @@ namespace ApiModelo.Application.Interfaces
     {
         void Add(ProdutoDto produtoDto);
         void Update(ProdutoDto produtoDto);
-        void Delete(ProdutoDto produtoDto);
+        void Delete(int id);
         IEnumerable<ProdutoDto> GetAll();
         ProdutoDto GetById(int id);
     }

@@ -34,5 +34,12 @@ namespace ApiModelo.Infrastructure.Data
 
             return result.Valor;
         }
+
+        public void AtualizarSequencia(string entityName)
+        {
+            var filter = Builders<Sequencia>.Filter.Eq(x => x.EntityName, entityName);
+            var update = Builders<Sequencia>.Update.Inc(x => x.Valor, -1); // Decrementa o valor em 1
+            _collection.UpdateOne(filter, update);
+        }
     }
 }

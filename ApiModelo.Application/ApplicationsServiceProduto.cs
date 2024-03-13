@@ -37,9 +37,9 @@ namespace ApiModelo.Application
             return produtoDto;
         }
 
-        public void Delete(ProdutoDto produtoDto)
+        public void Delete(int id)
         {
-            var produto = mapper.Map<Produto>(produtoDto);
+            var produto = serviceProduto.GetById(id);
             serviceProduto.Delete(produto);
         }
 

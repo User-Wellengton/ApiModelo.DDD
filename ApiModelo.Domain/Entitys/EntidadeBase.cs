@@ -9,6 +9,7 @@ namespace ApiModelo.Domain.Entitys
         [BsonRepresentation(BsonType.ObjectId)]
         public string? _Id { get; set; }
 
+        [BsonElement("id")]
         public int Id { get; set; }
 
         [BsonElement("data_cadastro")]

@@ -74,20 +74,19 @@ namespace ApiModelo.API.Controllers
 
         // DELETE api/values/5
         [HttpDelete()]
-        public ActionResult Delete([FromBody] ProdutoDto produtoDTO)
+        public ActionResult Delete(int id)
         {
             try
             {
-                if (produtoDTO == null)
-                    return NotFound();
+                if (id == null)
+                    return NotFound();               
 
-                applicationServiceProduto.Delete(produtoDTO);
+                applicationServiceProduto.Delete(id); // Passando o ID como string
                 return Ok("O produto foi removido com sucesso!");
 
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
