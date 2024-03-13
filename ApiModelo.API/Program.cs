@@ -1,13 +1,13 @@
+using ApiModelo.Application;
 using ApiModelo.Application.AutoMapper;
 using ApiModelo.Application.Interfaces;
-using ApiModelo.Application;
 using ApiModelo.Domain.Core.Interfaces.Repositorys;
 using ApiModelo.Domain.Core.Interfaces.Services;
 using ApiModelo.Domain.Services;
-using ApiModelo.Infrastructure.Data.Repositorys;
 using ApiModelo.Infrastructure.Data;
-using Microsoft.OpenApi.Models;
+using ApiModelo.Infrastructure.Data.Repositorys;
 using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,8 +20,14 @@ builder.Services.AddScoped<IApplicationServiceCliente, ApplicationsServiceClient
 builder.Services.AddScoped<IServiceCliente, ServiceCliente>();
 builder.Services.AddScoped<IRepositoryCliente, RepositoryCliente>();
 
+// Registro de IDatabaseSettings
 builder.Services.AddSingleton<IDatabaseSettings, DatabaseSettings>();
+
+// Configuração das opções do DatabaseSettings e injeção de IDatabaseSettings em MongoContext
 builder.Services.AddSingleton<MongoContext>();
+
+// Configuração das opções do DatabaseSettings e injeção de IDatabaseSettings em AutoIncrement
+builder.Services.AddSingleton<AutoIncrement>();
 
 builder.Services.AddAutoMapper(typeof(ClienteMapper), typeof(ProdutoMapper));
 

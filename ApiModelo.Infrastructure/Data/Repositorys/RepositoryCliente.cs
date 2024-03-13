@@ -5,7 +5,8 @@ namespace ApiModelo.Infrastructure.Data.Repositorys
 {
     public class RepositoryCliente : RepositoryBase<Cliente>, IRepositoryCliente
     {
-        public RepositoryCliente(MongoContext mongoContext) : base(mongoContext)
+        public RepositoryCliente(MongoContext mongoContext, AutoIncrement autoIncrement)
+            : base(mongoContext, autoIncrement, "cliente")
         {
         }
     }

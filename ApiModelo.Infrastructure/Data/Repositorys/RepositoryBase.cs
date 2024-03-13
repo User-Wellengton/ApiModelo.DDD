@@ -1,4 +1,5 @@
 ﻿using ApiModelo.Domain.Core.Interfaces.Repositorys;
+using ApiModelo.Domain.Entitys;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -7,16 +8,23 @@ namespace ApiModelo.Infrastructure.Data.Repositorys
     public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class
     {
         private readonly IMongoCollection<TEntity> _collection;
+        private readonly AutoIncrement _autoIncrement;
 
-        public RepositoryBase(MongoContext mongoContext)
+        public RepositoryBase(MongoContext mongoContext, AutoIncrement autoIncrement, string collectionName)
         {
-            _collection = mongoContext.GetCollection<TEntity>();
+            _collection = mongoContext.GetCollection<TEntity>(collectionName);
+            _autoIncrement = autoIncrement;
         }
 
         public void Add(TEntity entity)
         {
             try
             {
+                if (typeof(TEntity).GetProperty("Id") != null)
+                {
+                    var propertyInfo = typeof(TEntity).GetProperty("Id");
+                    propertyInfo.SetValue(entity, _autoIncrement.GetNextSequence(typeof(TEntity).Name));
+                }
                 _collection.InsertOne(entity);
             }
             catch (Exception ex)
@@ -81,6 +89,9 @@ namespace ApiModelo.Infrastructure.Data.Repositorys
             var propertyInfo = typeof(TEntity).GetProperty("Id");
             return (ObjectId)propertyInfo.GetValue(entity);
         }
-
+        private bool HasIdProperty(TEntity entity)
+        {
+            return typeof(TEntity).GetProperty("Id") != null;
+        }
     }
 }
