@@ -36,7 +36,7 @@ namespace ApiModelo.Infrastructure.Data.Repositorys
         {
             try
             {
-                var filter = Builders<TEntity>.Filter.Eq("_id", GetIdValue(entity));
+                var filter = Builders<TEntity>.Filter.Eq("id", GetIdValue(entity));
                 _collection.ReplaceOne(filter, entity);
             }
             catch (Exception ex)
@@ -91,6 +91,7 @@ namespace ApiModelo.Infrastructure.Data.Repositorys
             {
                 var filter = Builders<TEntity>.Filter.Eq("Id", GetIdValue(entity));
                 _collection.DeleteOne(filter);
+                _autoIncrement.AtualizarSequencia(typeof(TEntity).Name);
             }
             catch (Exception ex)
             {

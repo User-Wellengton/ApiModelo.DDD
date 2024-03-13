@@ -43,10 +43,24 @@ namespace ApiModelo.Application
             serviceProduto.Delete(produto);
         }
 
-        public void Update(ProdutoDto produtoDto)
+        public void Update(int id, ProdutoDto produtoDto)
         {
-            var produto = mapper.Map<Produto>(produtoDto);
-            serviceProduto.Update(produto);
+            try
+            {
+                var produto = mapper.Map<Produto>(produtoDto);
+                produto.Id = id;
+
+                var produtoExistente = serviceProduto.GetById(id);
+                produto._Id = produtoExistente._Id;
+                produto.DataCadastro = produtoExistente.DataCadastro;
+                produto.DataAtualizacao = DateTime.UtcNow;
+
+                serviceProduto.Update(produto);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao atualizar produto.", ex);
+            }
         }
     }
 }

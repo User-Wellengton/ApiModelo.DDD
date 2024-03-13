@@ -15,7 +15,7 @@ namespace ApiModelo.Application
         {
             this.mapper = mapper;
             this.serviceCliente = serviceCliente;
-        }       
+        }
         public void Add(ClienteDto clienteDto)
         {
             var cliente = mapper.Map<Cliente>(clienteDto);
@@ -44,10 +44,24 @@ namespace ApiModelo.Application
             serviceCliente.Delete(cliente);
         }
 
-        public void Update(ClienteDto clienteDto)
+        public void Update(int id, ClienteDto clienteDto)
         {
-            var cliente = mapper.Map<Cliente>(clienteDto);
-            serviceCliente.Update(cliente);
+            try
+            {
+                var cliente = mapper.Map<Cliente>(clienteDto);
+                cliente.Id = id;
+
+                var clienteExistente = serviceCliente.GetById(id);
+                cliente._Id = clienteExistente._Id;
+                cliente.DataCadastro = clienteExistente.DataCadastro;
+                cliente.DataAtualizacao = DateTime.UtcNow;
+
+                serviceCliente.Update(cliente);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao atualizar cliente.", ex);
+            }
         }
     }
 }

@@ -52,14 +52,14 @@ namespace ApiModelo.API.Controllers
 
         // PUT api/values/5
         [HttpPut]
-        public ActionResult Put([FromBody] ClienteDto clienteDTO)
+        public ActionResult Put(int id , [FromBody] ClienteDto clienteDTO)
         {
             try
             {
                 if (clienteDTO == null)
                     return NotFound();
 
-                applicationServiceCliente.Update(clienteDTO);
+                applicationServiceCliente.Update(id ,clienteDTO);
                 return Ok("Cliente Atualizado com sucesso!");
             }
             catch (Exception)

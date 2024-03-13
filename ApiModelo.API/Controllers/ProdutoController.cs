@@ -53,7 +53,7 @@ namespace ApiModelo.API.Controllers
 
         // PUT api/values/5
         [HttpPut]
-        public ActionResult Put([FromBody] ProdutoDto produtoDTO)
+        public ActionResult Put(int id , [FromBody] ProdutoDto produtoDTO)
         {
 
             try
@@ -61,7 +61,7 @@ namespace ApiModelo.API.Controllers
                 if (produtoDTO == null)
                     return NotFound();
 
-                applicationServiceProduto.Update(produtoDTO);
+                applicationServiceProduto.Update(id , produtoDTO);
                 return Ok("O produto foi atualizado com sucesso!");
 
             }

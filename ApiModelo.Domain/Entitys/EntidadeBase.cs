@@ -22,11 +22,6 @@ namespace ApiModelo.Domain.Entitys
         {
             DataCadastro = DateTime.UtcNow;
         }
-
-        public void AtualizarDataAtualizacao()
-        {
-            DataAtualizacao = DateTime.UtcNow;
-        }
     }
 }
 
