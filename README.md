@@ -8,7 +8,6 @@ Este é um projeto de API em C# que utiliza a arquitetura Domain-Driven Design (
 - C#
 - MongoDB
 - MongoDB C# Driver
-- Outras dependências podem ser encontradas no arquivo `*.csproj`
 
 ## Estrutura do Projeto
 
