@@ -6,7 +6,7 @@ namespace ApiModelo.Application.Interfaces
     {
         void Add(ClienteDto clienteDto);
         void Update(ClienteDto clienteDto);
-        void Delete(ClienteDto clienteDto);
+        void Delete(int id);
         IEnumerable<ClienteDto> GetAll();
         ClienteDto GetById(int id);
     }

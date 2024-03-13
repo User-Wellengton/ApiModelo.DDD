@@ -71,14 +71,14 @@ namespace ApiModelo.API.Controllers
 
         // DELETE api/values/5
         [HttpDelete()]
-        public ActionResult Delete([FromBody] ClienteDto clienteDTO)
+        public ActionResult Delete(int id)
         {
             try
             {
-                if (clienteDTO == null)
+                if (id == null)
                     return NotFound();
 
-                applicationServiceCliente.Delete(clienteDTO);
+                applicationServiceCliente.Delete(id);
                 return Ok("Cliente Removido com sucesso!");
             }
             catch (Exception ex)

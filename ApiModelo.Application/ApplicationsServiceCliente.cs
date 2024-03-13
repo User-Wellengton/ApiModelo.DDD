@@ -38,9 +38,9 @@ namespace ApiModelo.Application
             return clienteDto;
         }
 
-        public void Delete(ClienteDto clienteDto)
+        public void Delete(int id)
         {
-            var cliente = mapper.Map<Cliente>(clienteDto);
+            var cliente = serviceCliente.GetById(id);
             serviceCliente.Delete(cliente);
         }
 
