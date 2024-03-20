@@ -51,7 +51,7 @@ namespace ApiModelo.API.Controllers
             }
         }
 
-        // PUT api/values/5
+        
         [HttpPut]
         public ActionResult Put(int id , [FromBody] ProdutoDto produtoDTO)
         {

@@ -46,6 +46,14 @@ builder.Services.AddSingleton<IDatabaseSettings>(sp =>
 
 var app = builder.Build();
 
+// Configuração do CORS
+app.UseCors(builder =>
+{
+    builder.AllowAnyOrigin()
+           .AllowAnyHeader()
+           .AllowAnyMethod();
+});
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
