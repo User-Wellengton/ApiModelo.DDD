@@ -25,10 +25,16 @@ namespace ApiModelo.API.Controllers
         }
 
         // GET api/values/5\
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public ActionResult<string> Get(int id)
         {
             return Ok(applicationServiceProduto.GetById(id));
+        }
+
+        [HttpGet("{nome}")]
+        public ActionResult<string> GetByName(string nome)
+        {
+            return Ok(applicationServiceProduto.GetByName(nome));
         }
 
         // POST api/values
