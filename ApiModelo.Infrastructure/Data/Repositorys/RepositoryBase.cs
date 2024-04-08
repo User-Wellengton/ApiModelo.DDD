@@ -1,5 +1,4 @@
 ﻿using ApiModelo.Domain.Core.Interfaces.Repositorys;
-using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace ApiModelo.Infrastructure.Data.Repositorys
@@ -63,13 +62,13 @@ namespace ApiModelo.Infrastructure.Data.Repositorys
             {
                 var filter = Builders<TEntity>.Filter.Eq("id", id);
 
-                // Verifica se o filtro está vazio ou nulo
+                
                 if (filter == null || filter == Builders<TEntity>.Filter.Empty)
                 {
                     throw new ArgumentException("Não foi localizado registro com esse ID.");
                 }
 
-                // Realiza a busca usando o filtro
+               
                 var entity = _collection.Find(filter).FirstOrDefault();
 
                 if (entity == null)
@@ -82,6 +81,34 @@ namespace ApiModelo.Infrastructure.Data.Repositorys
             catch (Exception ex)
             {
                 throw new Exception("Não foi localizado registro com esse ID.", ex);
+            }
+        }
+
+        public TEntity GetByName(string nome)
+        {
+            try
+            {
+                var filter = Builders<TEntity>.Filter.Eq("nome", nome);
+
+                
+                if (filter == null || filter == Builders<TEntity>.Filter.Empty)
+                {
+                    throw new ArgumentException("Não foi localizado registro com esse Nome.");
+                }
+
+                
+                var entity = _collection.Find(filter).FirstOrDefault();
+
+                if (entity == null)
+                {
+                    throw new ArgumentException("Não foi localizado registro com esse Nome.");
+                }
+
+                return entity;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Não foi localizado registro com esse Nome.", ex);
             }
         }
 

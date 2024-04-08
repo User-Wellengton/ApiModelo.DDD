@@ -6,6 +6,7 @@ using ApiModelo.Domain.Core.Interfaces.Services;
 using ApiModelo.Domain.Services;
 using ApiModelo.Infrastructure.Data;
 using ApiModelo.Infrastructure.Data.Repositorys;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 
@@ -59,6 +60,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Modelo v1"));
 }
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(builder.Environment.ContentRootPath, "Imagens")),
+    RequestPath = "/img"
+});
 
 app.UseHttpsRedirection();
 app.UseAuthorization();

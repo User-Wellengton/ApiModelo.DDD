@@ -9,5 +9,6 @@ namespace ApiModelo.Application.Interfaces
         void Delete(int id);
         IEnumerable<ProdutoDto> GetAll();
         ProdutoDto GetById(int id);
+        ProdutoDto GetByName(string nome);
     }
 }

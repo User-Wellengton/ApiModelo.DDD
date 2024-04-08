@@ -15,4 +15,8 @@
     <ProjectReference Include="..\ApiModelo.Infrastructure\ApiModelo.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Imagens\" />
+  </ItemGroup>
+
 </Project>
