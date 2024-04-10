@@ -38,6 +38,13 @@ namespace ApiModelo.Application
             return clienteDto;
         }
 
+        public ClienteDto GetByName(string nome)
+        {
+            var cliente = serviceCliente.GetByName(nome);
+            var clienteDto = mapper.Map<ClienteDto>(cliente);
+            return clienteDto;
+        }
+
         public void Delete(int id)
         {
             var cliente = serviceCliente.GetById(id);

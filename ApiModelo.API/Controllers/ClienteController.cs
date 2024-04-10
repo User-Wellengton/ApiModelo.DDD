@@ -23,13 +23,19 @@ namespace ApiModelo.API.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public ActionResult<string> Get(int id)
         {
             return Ok(applicationServiceCliente.GetById(id));
         }
 
-        // POST api/values
+        [HttpGet("{nome}")]
+        public ActionResult<string> GetByName(string nome)
+        {
+            return Ok(applicationServiceCliente.GetByName(nome));
+        }
+
+
         [HttpPost]
         public ActionResult Post([FromBody] ClienteDto clienteDTO)
         {

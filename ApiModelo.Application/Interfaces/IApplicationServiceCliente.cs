@@ -9,5 +9,6 @@ namespace ApiModelo.Application.Interfaces
         void Delete(int id);
         IEnumerable<ClienteDto> GetAll();
         ClienteDto GetById(int id);
+        ClienteDto GetByName(string nome);
     }
 }
