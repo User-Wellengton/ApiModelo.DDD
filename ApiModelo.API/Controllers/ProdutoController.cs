@@ -16,7 +16,6 @@ namespace ApiModelo.API.Controllers
         }
 
 
-
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
