@@ -17,9 +17,15 @@ builder.Services.AddScoped<IApplicationServiceProduto, ApplicationsServiceProdut
 builder.Services.AddScoped<IServiceProduto, ServiceProduto>();
 builder.Services.AddScoped<IRepositoryProduto, RepositoryProduto>();
 
+
 builder.Services.AddScoped<IApplicationServiceCliente, ApplicationsServiceCliente>();
 builder.Services.AddScoped<IServiceCliente, ServiceCliente>();
 builder.Services.AddScoped<IRepositoryCliente, RepositoryCliente>();
+
+builder.Services.AddScoped<IApplicationServiceTarefa, ApplicationsServiceTarefa>();
+builder.Services.AddScoped<IServiceTarefa, ServiceTarefa>();
+builder.Services.AddScoped<IRepositoryTarefa, RepositoryTarefa>();
+
 
 // Registro de IDatabaseSettings
 builder.Services.AddSingleton<IDatabaseSettings, DatabaseSettings>();
@@ -30,7 +36,7 @@ builder.Services.AddSingleton<MongoContext>();
 // Configuração das opções do DatabaseSettings e injeção de IDatabaseSettings em AutoIncrement
 builder.Services.AddSingleton<AutoIncrement>();
 
-builder.Services.AddAutoMapper(typeof(ClienteMapper), typeof(ProdutoMapper));
+builder.Services.AddAutoMapper(typeof(ClienteMapper), typeof(ProdutoMapper),typeof(TarefaMapper));
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -61,12 +67,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Modelo v1"));
 }
 
-app.UseStaticFiles(new StaticFileOptions
-{
-    FileProvider = new PhysicalFileProvider(
-        Path.Combine(builder.Environment.ContentRootPath, "Imagens")),
-    RequestPath = "/img"
-});
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
