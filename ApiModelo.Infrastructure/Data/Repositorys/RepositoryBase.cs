@@ -1,4 +1,5 @@
 ﻿using ApiModelo.Domain.Core.Interfaces.Repositorys;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace ApiModelo.Infrastructure.Data.Repositorys
@@ -84,13 +85,13 @@ namespace ApiModelo.Infrastructure.Data.Repositorys
             }
         }
 
-        public TEntity GetByName(string nome)
+        public TEntity GetByName(string campoPesquisa , string nome)
         {
             try
             {
-                var filter = Builders<TEntity>.Filter.Eq("nome", nome);
+                var filter = Builders<TEntity>.Filter.Regex(campoPesquisa, new BsonRegularExpression(nome, "i"));
 
-                
+
                 if (filter == null || filter == Builders<TEntity>.Filter.Empty)
                 {
                     throw new ArgumentException("Não foi localizado registro com esse Nome.");

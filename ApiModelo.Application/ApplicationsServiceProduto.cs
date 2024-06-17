@@ -39,7 +39,8 @@ namespace ApiModelo.Application
 
         public ProdutoDto GetByName(string nome)
         {
-            var produto = serviceProduto.GetByName( nome);
+            var campoPesquisa = "nome";
+            var produto = serviceProduto.GetByName(campoPesquisa, nome);
             var produtoDto = mapper.Map<ProdutoDto>(produto);
             return produtoDto;
         }

@@ -36,9 +36,9 @@ namespace ApiModelo.Domain.Services
         {
             return repository.GetById(id);
         }   
-        public TEntity GetByName(string nome)
+        public TEntity GetByName(string campoPesquisa ,string nome)
         {
-            return repository.GetByName(nome);
+            return repository.GetByName(campoPesquisa , nome);
         }       
     }
 }

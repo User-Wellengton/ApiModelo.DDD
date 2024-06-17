@@ -40,7 +40,8 @@ namespace ApiModelo.Application
 
         public ClienteDto GetByName(string nome)
         {
-            var cliente = serviceCliente.GetByName(nome);
+            var campoPesquisa = "nome";
+            var cliente = serviceCliente.GetByName(campoPesquisa, nome);
             var clienteDto = mapper.Map<ClienteDto>(cliente);
             return clienteDto;
         }
