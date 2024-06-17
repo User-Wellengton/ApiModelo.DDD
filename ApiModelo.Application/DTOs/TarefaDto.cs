@@ -28,5 +28,8 @@ namespace ApiModelo.Application.DTOs
 
         [BsonElement("status")]
         public int Status { get; set; }
+
+        [BsonElement("usuarioId")]
+        public int UsuarioId { get; set; }
     }
 }
