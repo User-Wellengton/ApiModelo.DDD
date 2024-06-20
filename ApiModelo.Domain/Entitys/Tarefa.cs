@@ -28,5 +28,6 @@ namespace ApiModelo.Domain.Entitys
 
         [BsonElement("usuarioId")]
         public int UsuarioId { get; set; }
+            
     }
 }

@@ -26,6 +26,10 @@ builder.Services.AddScoped<IApplicationServiceTarefa, ApplicationsServiceTarefa>
 builder.Services.AddScoped<IServiceTarefa, ServiceTarefa>();
 builder.Services.AddScoped<IRepositoryTarefa, RepositoryTarefa>();
 
+builder.Services.AddScoped<IApplicationServiceUsuario, ApplicationsServiceUsuario>();
+builder.Services.AddScoped<IServiceUsuario, ServiceUsuario>();
+builder.Services.AddScoped<IRepositoryUsuario, RepositoryUsuario>();
+
 
 // Registro de IDatabaseSettings
 builder.Services.AddSingleton<IDatabaseSettings, DatabaseSettings>();
