@@ -83,6 +83,15 @@ namespace ApiModelo.Infrastructure.Data.Repositorys
             {
                 throw new Exception("Não foi localizado registro com esse ID.", ex);
             }
+        } 
+        
+        public TEntity GetByUsuarioId(int id)
+        {                    
+                var filter = Builders<TEntity>.Filter.Eq("usuarioId", id);   
+               
+                var entity = _collection.Find(filter).FirstOrDefault();              
+
+                return entity;             
         }
 
         public TEntity GetByName(string campoPesquisa , string nome)

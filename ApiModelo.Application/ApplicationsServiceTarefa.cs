@@ -37,6 +37,12 @@ namespace ApiModelo.Application
             var tarefaDto = mapper.Map<TarefaDto>(tarefa);
             return tarefaDto;
         }
+        public TarefaDto GetByUsuarioId(int id)
+        {
+            var tarefa = serviceTarefa.GetByUsuarioId(id);
+            var tarefaDto = mapper.Map<TarefaDto>(tarefa);
+            return tarefaDto;
+        }
 
         public TarefaDto GetByName(string nome)
         {

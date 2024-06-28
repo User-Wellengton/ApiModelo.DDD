@@ -11,6 +11,7 @@ namespace ApiModelo.Application.Interfaces
         void Delete(int id);
         IEnumerable<TarefaDto> GetAll();
         TarefaDto GetById(int id);
+        TarefaDto GetByUsuarioId(int id);
         TarefaDto GetByName(string nome);
     }
 }

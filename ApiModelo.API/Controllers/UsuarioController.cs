@@ -9,10 +9,12 @@ namespace ApiModelo.API.Controllers
     public class UsuarioController : Controller
     {
         private readonly IApplicationServiceUsuario applicationServiceUsuario;
+        private readonly IApplicationServiceTarefa applicationServiceTarefa;
 
-        public UsuarioController(IApplicationServiceUsuario applicationServiceUsuario)
+        public UsuarioController(IApplicationServiceUsuario applicationServiceUsuario, IApplicationServiceTarefa applicationServiceTarefa)
         {
             this.applicationServiceUsuario = applicationServiceUsuario;
+            this.applicationServiceTarefa = applicationServiceTarefa;
         }
 
         [HttpGet]
@@ -80,8 +82,19 @@ namespace ApiModelo.API.Controllers
                 if (id == null)
                     return NotFound();
 
-                applicationServiceUsuario.Delete(id);
-                return Ok("O usuário foi removido com sucesso!");
+                var tarefaComUsuario = applicationServiceTarefa.GetByUsuarioId(id);
+
+                if (tarefaComUsuario == null)
+                {
+                    
+                    applicationServiceUsuario.Delete(id);
+                    return Ok("O usuário foi removido com sucesso!");
+                }
+                else
+                {
+                    
+                    return BadRequest("Não é possível excluir o usuário devido a tarefas associadas.");
+                }
 
             }
             catch (Exception ex)

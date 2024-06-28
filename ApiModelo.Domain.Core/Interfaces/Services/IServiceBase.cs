@@ -7,6 +7,7 @@
         void Delete(TEntity entity);
         IEnumerable<TEntity> GetAll();
         TEntity GetById(int id);
+        TEntity GetByUsuarioId(int id);
         TEntity GetByName(string campoPesquisa, string nome);
     }
 }
